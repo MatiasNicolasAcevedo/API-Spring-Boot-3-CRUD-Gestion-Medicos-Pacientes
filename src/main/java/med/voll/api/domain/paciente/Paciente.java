@@ -1,19 +1,18 @@
-package med.voll.api.paciente;
+package med.voll.api.domain.paciente;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import med.voll.api.direccion.Direccion;
-import med.voll.api.medico.DatosActualizarMedico;
+import med.voll.api.domain.direccion.Direccion;
 
+@Table(name = "pacientes")
+@Entity(name = "Paciente")
 @Getter
-@EqualsAndHashCode(of = "id")
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "Paciente")
-@Table(name = "pacientes")
+@EqualsAndHashCode(of = "id")
 public class Paciente {
 
     @Id
@@ -26,6 +25,7 @@ public class Paciente {
     private String telefono;
     private Boolean activo;
 
+    @Embedded
     private Direccion direccion;
 
     public Paciente(DatosRegistroPaciente datos) {

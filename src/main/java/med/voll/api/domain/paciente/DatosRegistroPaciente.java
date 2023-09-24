@@ -1,16 +1,15 @@
-package med.voll.api.medico;
+package med.voll.api.domain.paciente;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import med.voll.api.direccion.DatosDireccion;
+import med.voll.api.domain.direccion.DatosDireccion;
 
 // record para representar los datos recibidos en una solicitud POST.
-public record DatosRegistroMedico(
-
-        @NotBlank // validar que nombre no llegue ni null, ni blanck.
+public record DatosRegistroPaciente(
+        @NotBlank
         String nombre,
         @NotBlank
         @Email
@@ -18,11 +17,10 @@ public record DatosRegistroMedico(
         @NotBlank
         String telefono,
         @NotBlank
-        @Pattern(regexp = "\\d{4,6}") // numero de 4 a 6 digitos, expresion regular.
-        String documento,
-        @NotNull
-        Especialidad especialidad,
+        @Pattern(regexp = "\\d{3}\\.?\\d{3}\\.?\\d{3}\\-?\\d{2}")
+        String documentoIdentidad,
         @NotNull
         @Valid
-        DatosDireccion direccion) {
+        DatosDireccion direccion
+) {
 }
